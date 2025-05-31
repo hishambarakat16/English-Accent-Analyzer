@@ -46,7 +46,7 @@ A lightweight Flask app that:
 ## ✨ Screenshots
 
 <p float="left">
-  <img src="src/images/web_page.png" alt="Web Page: Input Form" width="400" />
+
   <img src="src/images/web_page_results.png" alt="Web Page: Sample Results" width="400" />
 </p>
 
