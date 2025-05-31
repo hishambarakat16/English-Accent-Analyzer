@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accent Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>English Accent Analyzer</h1>
+            <p>Analyze spoken English accents from videos for hiring purposes</p>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="url-tab">Video URL</button>
+                <button class="tab-btn" data-tab="file-tab">Upload File</button>
+            </div>
+
+            <div class="tab-content active" id="url-tab">
+                <form id="url-form" class="analysis-form">
+                    <div class="form-group">
+                        <label for="video-url">Enter Video URL:</label>
+                        <input type="url" id="video-url" name="url" placeholder="https://www.loom.com/share/..." required>
+                        <small>Supports Loom, YouTube, Vimeo, and direct MP4 links</small>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Analyze Accent</button>
+                </form>
+            </div>
+
+            <div class="tab-content" id="file-tab">
+                <form id="file-form" class="analysis-form">
+                    <div class="form-group">
+                        <label for="video-file">Upload Video File:</label>
+                        <div class="file-upload">
+                            <input type="file" id="video-file" name="file" accept="video/*" required>
+                            <label for="video-file" class="file-label">
+                                <span class="file-icon">📁</span>
+                                <span class="file-text">Choose a file or drag it here</span>
+                            </label>
+                            <div class="file-name"></div>
+                        </div>
+                        <small>Maximum file size: 100MB</small>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Analyze Accent</button>
+                </form>
+            </div>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing accent... This may take a few minutes.</p>
+            </div>
+
+            <div id="results" class="hidden">
+                <h2>Analysis Results</h2>
+                <div class="result-card">
+                    <div class="result-header">
+                        <h3>Detected Accent: <span id="accent-result"></span></h3>
+                        <div class="confidence-meter">
+                            <div class="confidence-label">Confidence:</div>
+                            <div class="meter">
+                                <div id="confidence-bar" class="meter-bar"></div>
+                            </div>
+                            <div id="confidence-value" class="confidence-value"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-detail">
+                        <h4>English Language Confidence</h4>
+                        <div class="meter">
+                            <div id="english-bar" class="meter-bar"></div>
+                        </div>
+                        <div id="english-value" class="confidence-value"></div>
+                    </div>
+
+                    <div class="result-detail">
+                        <h4>Top Accent Matches</h4>
+                        <ul id="top-accents" class="accent-list"></ul>
+                    </div>
+
+                    <div class="result-detail">
+                        <h4>Transcript Sample</h4>
+                        <p id="transcript-sample" class="transcript"></p>
+                    </div>
+                </div>
+                <button id="new-analysis" class="btn secondary-btn">Analyze Another Video</button>
+            </div>
+
+            <div id="error" class="hidden">
+                <div class="error-icon">❌</div>
+                <h3>Error</h3>
+                <p id="error-message"></p>
+                <button id="try-again" class="btn secondary-btn">Try Again</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 Accent Analyzer - Built for hiring evaluation purposes</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

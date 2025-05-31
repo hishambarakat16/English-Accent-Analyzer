@@ -1,0 +1,7 @@
+flask==2.3.3
+yt-dlp==2025.5.22
+torch==2.7.0
+torchaudio===2.7.0
+transformers==4.50.3
+whisper-timestamped==1.15.8
+gunicorn==21.2.0

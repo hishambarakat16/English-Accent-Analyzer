@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accent Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Accent Analysis Results</h1>
+        </header>
+        
+        <main class="results-container">
+            <div class="result-card">
+                <h2>Analysis Summary</h2>
+                
+                <div class="result-section">
+                    <h3>Detected Accent</h3>
+                    <p class="accent-result">{{ accent }}</p>
+                    <div class="confidence-meter">
+                        <!-- @ts-ignore -->
+                        <div class="confidence-bar {{ confidence_class }}"></div>
+
+                    </div>
+                    <p class="confidence-text">Confidence: {{ confidence }}%</p>
+                </div>
+                
+                <div class="result-section">
+                    <h3>Pronunciation Features</h3>
+                    <ul class="feature-list">
+                        {% for feature in features %}
+                        <li>{{ feature.name }}: {{ feature.description }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="result-section">
+                    <h3>Improvement Suggestions</h3>
+                    <ul class="suggestions-list">
+                        {% for suggestion in suggestions %}
+                        <li>{{ suggestion }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="audio-playback">
+                <h3>Your Recording</h3>
+                <audio controls src="{{ url_for('static', filename=audio_file) }}"></audio>
+            </div>
+            
+            <div class="actions">
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Try Another Recording</a>
+                <a href="#" class="btn btn-secondary" id="downloadReport">Download Report</a>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Accent Analyzer. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
